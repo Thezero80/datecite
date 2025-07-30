@@ -8,6 +8,11 @@ document.addEventListener('DOMContentLoaded', () => {
             const service = button.getAttribute('data-service');
             serviceInput.value = service;
             serviceInput.classList.remove('is-invalid');
+            // Add animation to form input
+            serviceInput.classList.add('animate__animated', 'animate__pulse');
+            setTimeout(() => {
+                serviceInput.classList.remove('animate__animated', 'animate__pulse');
+            }, 1000);
         });
     });
 
@@ -35,11 +40,11 @@ document.addEventListener('DOMContentLoaded', () => {
         // Send email via EmailJS
         emailjs.send('service_tzzmwxg', 'template_tn3efha', formData)
             .then((response) => {
-                formMessage.innerHTML = '<div class="alert alert-success">Solicitud enviada con éxito. ¡Te contactaremos pronto!</div>';
+                formMessage.innerHTML = '<div class="alert alert-success animate__animated animate__fadeIn">Solicitud enviada con éxito. ¡Te contactaremos pronto!</div>';
                 form.reset();
                 form.classList.remove('was-validated');
             }, (error) => {
-                formMessage.innerHTML = '<div class="alert alert-danger">Error al enviar la solicitud. Por favor, intenta de nuevo.</div>';
+                formMessage.innerHTML = '<div class="alert alert-danger animate__animated animate__fadeIn">Error al enviar la solicitud. Por favor, intenta de nuevo.</div>';
                 console.error('EmailJS error:', error);
             });
     });
